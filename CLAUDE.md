@@ -6,7 +6,7 @@ App pessoal de finanças (PWA estático, em português do Brasil), publicado no 
 - `index.html`: marcação. Quatro abas (`#v-inicio`, `#v-contas`, `#v-gastos`, `#v-ajustes`) trocadas por `goTab()`, barra de abas fixa no rodapé, ícones como `<symbol>` SVG no topo do body.
 - `styles.css`: estilos. Identidade delicada (rosa-pétala e orquídea, Fraunces nos títulos, Nunito no texto). Cores e fontes são tokens em `:root`, com tema escuro via `prefers-color-scheme`; categorias usam `--k0`…`--k9` na ordem de `CATS`. Não use cores literais fora dos tokens (exceto o branco sobre os gradientes do cartão de destaque e dos cartões de crédito).
 - `app.js`: toda a lógica, em JS puro (sem build, sem framework).
-- `sw.js`: service worker (offline). **Aumente `VERSAO` a cada mudança em qualquer arquivo do app.**
+- `sw.js`: service worker (offline). **A cada mudança, aumente `VERSAO` em `sw.js` e use o mesmo valor no `?vN` de `styles.css` e `app.js` no `index.html`.** Sem isso, a página nova pode abrir com o estilo/script antigo do cache.
 - `manifest.webmanifest` e `icons/`: instalação como app.
 
 ## Dados

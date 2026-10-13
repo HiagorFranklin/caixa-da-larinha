@@ -51,7 +51,7 @@ Depois de instalado, o app abre em tela cheia e funciona sem internet.
 
 ## Atualizar o app
 
-Depois de alterar qualquer arquivo, aumente o número de `VERSAO` em `sw.js` (por exemplo `v1` → `v2`) e envie para o GitHub. Na próxima vez que o app abrir com internet, ele baixa a versão nova.
+Depois de alterar qualquer arquivo, aumente o número de `VERSAO` em `sw.js` (por exemplo `v4` → `v5`), troque o `?v4` de `styles.css` e `app.js` no `index.html` pelo mesmo número e envie para o GitHub. Na próxima vez que o app abrir com internet, ele baixa a versão nova.
 
 ## Testar no computador
 

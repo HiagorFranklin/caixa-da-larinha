@@ -1,12 +1,13 @@
 /* Service worker do Caixa da Larinha: deixa o app abrir sem internet.
-   Ao mudar qualquer arquivo do app, aumente o número em VERSAO para os celulares baixarem a versão nova. */
-const VERSAO = "v3";
+   Ao mudar qualquer arquivo do app, aumente o número em VERSAO (ex.: "v4" -> "v5") e use o MESMO valor
+   nos links do index.html: styles.css?v5 e app.js?v5. Assim a página nova nunca carrega o estilo antigo. */
+const VERSAO = "v4";
 const CACHE = "caixa-da-larinha-" + VERSAO;
 const ARQUIVOS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?" + VERSAO,
+  "./app.js?" + VERSAO,
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
