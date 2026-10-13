@@ -1,6 +1,6 @@
 /* Service worker do Caixa da Larinha: deixa o app abrir sem internet.
    Ao mudar qualquer arquivo do app, aumente o número em VERSAO para os celulares baixarem a versão nova. */
-const VERSAO = "v2";
+const VERSAO = "v3";
 const CACHE = "caixa-da-larinha-" + VERSAO;
 const ARQUIVOS = [
   "./",

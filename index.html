@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Caixa da Larinha</title>
-<meta name="description" content="Checklist de contas a pagar, gastos do dia a dia e sobra prevista do mês.">
-<meta name="theme-color" content="#FBF3F6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1A1015" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Contas a pagar, gastos do dia a dia, cartões e quanto sobra no mês.">
+<meta name="theme-color" content="#FFF5F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1016" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -16,54 +16,92 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Nunito:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand">
-      <h1>Caixa da Larinha</h1>
-      <p>Contas fixas, gastos do dia a dia e quanto sobra.</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 1.5c.7 5.4 2.7 8.4 10.5 10.5C14.7 14.1 12.7 17.1 12 22.5 11.3 17.1 9.3 14.1 1.5 12 9.3 9.9 11.3 6.9 12 1.5z"/></symbol>
+    <symbol id="i-flower" viewBox="0 0 48 48">
+      <g><ellipse cx="24" cy="12.5" rx="6.5" ry="10.5"/><ellipse cx="24" cy="12.5" rx="6.5" ry="10.5" transform="rotate(72 24 24)"/><ellipse cx="24" cy="12.5" rx="6.5" ry="10.5" transform="rotate(144 24 24)"/><ellipse cx="24" cy="12.5" rx="6.5" ry="10.5" transform="rotate(216 24 24)"/><ellipse cx="24" cy="12.5" rx="6.5" ry="10.5" transform="rotate(288 24 24)"/></g>
+      <circle cx="24" cy="24" r="5.5" style="fill:var(--flower-center)"/>
+    </symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6.5h10M10 12h10M10 17.5h10"/><path d="m3.5 6.5 1.6 1.6L8 5.2M3.5 12l1.6 1.6L8 10.7M3.5 17.5l1.6 1.6L8 16.2"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-.9 11.2a2 2 0 0 1-2 1.8H8.4a2 2 0 0 1-2-1.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6.5h9M17 6.5h3M4 12h3M11 12h9M4 17.5h11M19 17.5h1"/><circle cx="15" cy="6.5" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17.5" r="2"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6.5 15h4"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4 4 0 0 1-.7-7.9A6 6 0 0 1 17.8 9.6a4.5 4.5 0 0 1-.3 8.9z"/><path d="M12 16.5V11m-2.2 2.1L12 11l2.2 2.1"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4z"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M5 7.5V6.8A2.3 2.3 0 0 1 7.3 4.5H17v3"/><rect x="3.5" y="7.5" width="17" height="12.5" rx="3"/><path d="M15.5 13.75h2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5.5 12.5 4 4 9-9"/></symbol>
+  </defs>
+</svg>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="hello">
+      <span class="eyebrow"><svg class="orn"><use href="#i-sparkle"/></svg>Caixa da Larinha</span>
+      <h1 id="greeting">Olá, <em>Larinha</em></h1>
     </div>
     <div class="monthnav" role="group" aria-label="Mês">
-      <button class="iconbtn" id="prevM" aria-label="Mês anterior">‹</button>
-      <div class="m" id="monthLabel">—</div>
-      <button class="iconbtn" id="nextM" aria-label="Próximo mês">›</button>
-      <button class="ghost" id="todayM">Hoje</button>
+      <button class="iconbtn" id="prevM" type="button" aria-label="Mês anterior"><svg class="ic"><use href="#i-left"/></svg></button>
+      <button class="monthpill" id="monthLabel" type="button" title="Voltar para o mês atual">—</button>
+      <button class="iconbtn" id="nextM" type="button" aria-label="Próximo mês"><svg class="ic"><use href="#i-right"/></svg></button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <div class="banner" id="installBar" hidden></div>
-
-  <section class="ledger" id="ledger" aria-label="Resumo do mês"></section>
-
-  <form class="rendaform" id="rendaForm" hidden>
-    <div class="f" style="flex:1 1 160px"><label for="rRenda">Renda mensal (salário + extras)</label><input id="rRenda" inputmode="decimal" placeholder="0,00"></div>
-    <div class="f" style="flex:1 1 160px"><label for="rMeta">Limite p/ gastos do dia a dia</label><input id="rMeta" inputmode="decimal" placeholder="opcional"></div>
-    <div class="formacts" style="flex:0 0 auto">
-      <button class="primary" type="submit">Salvar</button>
-      <button class="ghost" type="button" id="rCancel">Cancelar</button>
+<main class="views">
+  <!-- INÍCIO -->
+  <section class="view" id="v-inicio" aria-label="Início">
+    <div class="banner" id="installBar" hidden></div>
+    <div id="hero"></div>
+    <div class="quick">
+      <button class="btn primary" type="button" data-goto="gastos" data-focus="gDesc"><svg class="ic"><use href="#i-plus"/></svg>Lançar gasto</button>
+      <button class="btn soft" type="button" data-goto="contas"><svg class="ic"><use href="#i-list"/></svg>Contas do mês</button>
     </div>
-  </form>
 
-  <div class="cols">
-    <section class="panel" aria-labelledby="hContas">
-      <div class="panel-head">
-        <h2 id="hContas">Contas a pagar</h2>
-        <button class="primary" id="newConta" type="button">+ Nova conta</button>
+    <section class="card">
+      <div class="card-head">
+        <h2><svg class="ic"><use href="#i-calendar"/></svg>Próximos vencimentos</h2>
+        <button class="linkbtn" type="button" data-goto="contas">Ver todas</button>
+      </div>
+      <ul class="bills compact" id="nextBills"></ul>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2><svg class="ic"><use href="#i-heart"/></svg>Para onde foi o dinheiro</h2>
+      </div>
+      <div id="metaBox"></div>
+      <div id="donut"></div>
+    </section>
+  </section>
+
+  <!-- CONTAS -->
+  <section class="view" id="v-contas" aria-label="Contas" hidden>
+    <section class="card">
+      <div class="card-head">
+        <h2><svg class="ic"><use href="#i-list"/></svg>Contas do mês</h2>
+        <button class="btn primary sm" id="newConta" type="button"><svg class="ic"><use href="#i-plus"/></svg>Nova conta</button>
       </div>
 
       <form class="grid" id="contaForm" hidden>
-        <div class="f s3"><label for="cNome">Conta</label><input id="cNome" placeholder="Ex.: Energia (Cemig)" maxlength="60" required></div>
-        <div class="f s3 half"><label for="cValor">Valor (R$)</label><input id="cValor" inputmode="decimal" placeholder="0,00" required></div>
-        <div class="f s2 half"><label for="cDia">Vence todo dia</label><input id="cDia" type="number" inputmode="numeric" min="1" max="31" placeholder="10" required></div>
-        <div class="f s2"><label for="cCat">Categoria</label><select id="cCat"></select></div>
-        <div class="f s2"><label for="cTipo">Repete</label>
+        <div class="f s6"><label for="cNome">Conta</label><input id="cNome" placeholder="Ex.: Aluguel, energia, faculdade" maxlength="60" required></div>
+        <div class="f s3"><label for="cValor">Valor (R$)</label><input id="cValor" inputmode="decimal" placeholder="0,00" required></div>
+        <div class="f s3"><label for="cDia">Vence todo dia</label><input id="cDia" type="number" inputmode="numeric" min="1" max="31" placeholder="10" required></div>
+        <div class="f s3"><label for="cCat">Categoria</label><select id="cCat"></select></div>
+        <div class="f s3"><label for="cTipo">Repete</label>
           <select id="cTipo"><option value="mensal">Todo mês</option><option value="unica">Só neste mês</option></select></div>
         <div class="formacts">
-          <button class="primary" type="submit" id="cSubmit">Adicionar conta</button>
-          <button class="ghost" type="button" id="cCancel">Cancelar</button>
+          <button class="btn primary" type="submit" id="cSubmit">Adicionar conta</button>
+          <button class="btn ghost" type="button" id="cCancel">Cancelar</button>
           <span class="err" id="cErr"></span>
         </div>
       </form>
@@ -72,72 +110,99 @@
       <ul class="bills" id="bills"></ul>
 
       <div class="calbox">
-        <button class="ghost" id="icsBtn" type="button">Adicionar vencimentos à agenda</button>
+        <button class="btn soft" id="icsBtn" type="button"><svg class="ic"><use href="#i-calendar"/></svg>Adicionar à agenda</button>
         <p class="hint">Cria um lembrete 2 dias antes e outro no dia de cada conta e fatura, na agenda do celular.</p>
       </div>
     </section>
+  </section>
 
-    <section class="panel" aria-labelledby="hGastos">
-      <div class="panel-head">
-        <h2 id="hGastos">Gastos do mês</h2>
-        <span class="num" id="gTotal"></span>
-      </div>
-
+  <!-- GASTOS -->
+  <section class="view" id="v-gastos" aria-label="Gastos" hidden>
+    <section class="card">
+      <div class="card-head"><h2><svg class="ic"><use href="#i-bag"/></svg>Lançar gasto</h2></div>
       <form class="grid" id="gastoForm">
-        <div class="f s4"><label for="gDesc">O que foi</label><input id="gDesc" placeholder="Ex.: Mercado, gasolina, lanche" maxlength="60" required></div>
-        <div class="f s2 half"><label for="gValor" id="gValorLbl">Valor (R$)</label><input id="gValor" inputmode="decimal" placeholder="0,00" required></div>
-        <div class="f s2 half"><label for="gData">Data</label><input id="gData" type="date" required></div>
-        <div class="f s2"><label for="gCat">Categoria</label><select id="gCat"></select></div>
-        <div class="f s2"><label for="gForma">Pagou com</label>
-          <select id="gForma"><option>Pix</option><option>Débito</option><option>Crédito</option><option>Dinheiro</option><option>Boleto</option></select></div>
-        <div class="f s3 half" id="gCartaoBox" hidden><label for="gCartao">Cartão</label><select id="gCartao"></select></div>
-        <div class="f s3 half" id="gParcBox" hidden><label for="gParc">Parcelas</label><select id="gParc"></select></div>
-        <p class="hint s6" id="gCardHint" hidden></p>
+        <div class="f s6"><label for="gDesc">O que foi</label><input id="gDesc" placeholder="Ex.: mercado, unha, uber, presente" maxlength="60" required></div>
+        <div class="f s3"><label for="gValor" id="gValorLbl">Valor (R$)</label><input id="gValor" inputmode="decimal" placeholder="0,00" required></div>
+        <div class="f s3"><label for="gData">Data</label><input id="gData" type="date" required></div>
+        <div class="f s6"><span class="flabel">Categoria</span><div class="catpick" id="catPick" role="radiogroup" aria-label="Categoria"></div><select id="gCat" hidden></select></div>
+        <div class="f s6"><span class="flabel">Pagou com</span><div class="seg" id="formaPick" role="radiogroup" aria-label="Forma de pagamento"></div>
+          <select id="gForma" hidden><option>Pix</option><option>Débito</option><option>Crédito</option><option>Dinheiro</option><option>Boleto</option></select></div>
+        <div class="f s3" id="gCartaoBox" hidden><label for="gCartao">Cartão</label><select id="gCartao"></select></div>
+        <div class="f s3" id="gParcBox" hidden><label for="gParc">Parcelas</label><select id="gParc"></select></div>
+        <p class="hint" id="gCardHint" hidden></p>
         <div class="formacts">
-          <button class="primary" type="submit">Lançar gasto</button>
+          <button class="btn primary wide" type="submit">Lançar gasto</button>
           <span class="err" id="gErr"></span>
         </div>
       </form>
+    </section>
 
-      <div id="metaBox"></div>
-      <div class="cats" id="cats"></div>
+    <section class="card">
+      <div class="card-head">
+        <h2 id="hCompras">Compras do mês</h2>
+        <span class="total" id="gTotal"></span>
+      </div>
       <div class="days" id="days"></div>
     </section>
-  </div>
+  </section>
 
-  <section class="panel" aria-labelledby="hCartoes">
-    <div class="panel-head">
-      <h2 id="hCartoes">Cartões de crédito</h2>
-      <button class="primary" id="newCartao" type="button">+ Novo cartão</button>
-    </div>
-    <p class="hint">Compras no crédito vão para a fatura do mês em que ela vence, e as parceladas se espalham pelos meses seguintes. Compras feitas a partir do dia do fechamento entram na fatura seguinte.</p>
-    <form class="grid" id="cartaoForm" hidden>
-      <div class="f s2"><label for="kNome">Cartão</label><input id="kNome" placeholder="Ex.: Nubank" maxlength="30" required></div>
-      <div class="f s2 half"><label for="kFecha">Fecha todo dia</label><input id="kFecha" type="number" inputmode="numeric" min="1" max="31" placeholder="3" required></div>
-      <div class="f s2 half"><label for="kVence">Vence todo dia</label><input id="kVence" type="number" inputmode="numeric" min="1" max="31" placeholder="10" required></div>
-      <div class="formacts">
-        <button class="primary" type="submit" id="kSubmit">Adicionar cartão</button>
-        <button class="ghost" type="button" id="kCancel">Cancelar</button>
-        <span class="err" id="kErr"></span>
+  <!-- AJUSTES -->
+  <section class="view" id="v-ajustes" aria-label="Ajustes" hidden>
+    <section class="card">
+      <div class="card-head"><h2><svg class="ic"><use href="#i-wallet"/></svg>Renda e limite</h2></div>
+      <form class="grid" id="rendaForm">
+        <div class="f s3"><label for="rRenda">Renda do mês</label><input id="rRenda" inputmode="decimal" placeholder="0,00"></div>
+        <div class="f s3"><label for="rMeta">Limite de gastos</label><input id="rMeta" inputmode="decimal" placeholder="opcional"></div>
+        <p class="hint">A renda é usada para calcular a sobra prevista. O limite avisa quando os gastos do mês (à vista + cartão) passarem do valor.</p>
+        <div class="formacts"><button class="btn primary" type="submit">Salvar</button></div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2><svg class="ic"><use href="#i-card"/></svg>Cartões de crédito</h2>
+        <button class="btn primary sm" id="newCartao" type="button"><svg class="ic"><use href="#i-plus"/></svg>Novo cartão</button>
       </div>
-    </form>
-    <ul class="cardlist" id="cardList"></ul>
-  </section>
+      <form class="grid" id="cartaoForm" hidden>
+        <div class="f s6"><label for="kNome">Cartão</label><input id="kNome" placeholder="Ex.: Nubank" maxlength="30" required></div>
+        <div class="f s3"><label for="kFecha">Fecha todo dia</label><input id="kFecha" type="number" inputmode="numeric" min="1" max="31" placeholder="3" required></div>
+        <div class="f s3"><label for="kVence">Vence todo dia</label><input id="kVence" type="number" inputmode="numeric" min="1" max="31" placeholder="10" required></div>
+        <div class="formacts">
+          <button class="btn primary" type="submit" id="kSubmit">Adicionar cartão</button>
+          <button class="btn ghost" type="button" id="kCancel">Cancelar</button>
+          <span class="err" id="kErr"></span>
+        </div>
+      </form>
+      <div class="cardlist" id="cardList"></div>
+      <p class="hint">Compras no crédito entram na fatura do mês em que ela vence, e as parceladas se espalham pelos meses seguintes. Compras feitas a partir do dia do fechamento vão para a fatura seguinte.</p>
+    </section>
 
-  <section class="backup" aria-labelledby="hBackup">
-    <div class="backup-text">
-      <h2 id="hBackup">Backup</h2>
-      <p>Seus dados ficam só neste aparelho. Exporte um backup de vez em quando e guarde no Drive ou no WhatsApp. <span id="lastBackup"></span></p>
-    </div>
-    <div class="backup-acts">
-      <button class="primary" id="exportBtn" type="button">Exportar backup</button>
-      <label class="ghost filebtn" for="importFile">Importar backup</label>
-      <input type="file" id="importFile" accept="application/json,.json" hidden>
-    </div>
-    <div class="banner" id="importConfirm" hidden></div>
+    <section class="card">
+      <div class="card-head"><h2><svg class="ic"><use href="#i-cloud"/></svg>Backup</h2></div>
+      <p class="hint">Os dados ficam só neste celular. Exporte um backup de vez em quando e guarde no Drive ou no WhatsApp. <span id="lastBackup"></span></p>
+      <div class="row-acts">
+        <button class="btn primary" id="exportBtn" type="button">Exportar backup</button>
+        <label class="btn ghost" for="importFile">Importar backup</label>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </div>
+      <div class="banner" id="importConfirm" hidden></div>
+    </section>
+
+    <p class="signature"><svg class="orn"><use href="#i-flower"/></svg>Feito com carinho para a Larinha</p>
   </section>
-</div>
-<div class="toast" id="toast" hidden></div>
+</main>
+
+<nav class="tabbar" aria-label="Seções">
+  <div class="tabbar-in">
+    <button class="tab" type="button" data-tab="inicio" aria-current="page"><svg class="ic"><use href="#i-home"/></svg><span>Início</span></button>
+    <button class="tab" type="button" data-tab="contas"><svg class="ic"><use href="#i-list"/></svg><span>Contas</span><b class="badge" id="badgeContas" hidden></b></button>
+    <button class="tab" type="button" data-tab="gastos"><svg class="ic"><use href="#i-bag"/></svg><span>Gastos</span></button>
+    <button class="tab" type="button" data-tab="ajustes"><svg class="ic"><use href="#i-sliders"/></svg><span>Ajustes</span></button>
+  </div>
+</nav>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
 <script src="app.js"></script>
 </body>
 </html>

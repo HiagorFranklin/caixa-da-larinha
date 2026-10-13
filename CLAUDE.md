@@ -3,8 +3,8 @@
 App pessoal de finanças (PWA estático, em português do Brasil), publicado no GitHub Pages e usado no celular.
 
 ## Estrutura
-- `index.html`: marcação da tela única.
-- `styles.css`: estilos. Cores e fontes são tokens em `:root`, com tema escuro via `prefers-color-scheme`. Não use cores literais fora dos tokens.
+- `index.html`: marcação. Quatro abas (`#v-inicio`, `#v-contas`, `#v-gastos`, `#v-ajustes`) trocadas por `goTab()`, barra de abas fixa no rodapé, ícones como `<symbol>` SVG no topo do body.
+- `styles.css`: estilos. Identidade delicada (rosa-pétala e orquídea, Fraunces nos títulos, Nunito no texto). Cores e fontes são tokens em `:root`, com tema escuro via `prefers-color-scheme`; categorias usam `--k0`…`--k9` na ordem de `CATS`. Não use cores literais fora dos tokens (exceto o branco sobre os gradientes do cartão de destaque e dos cartões de crédito).
 - `app.js`: toda a lógica, em JS puro (sem build, sem framework).
 - `sw.js`: service worker (offline). **Aumente `VERSAO` a cada mudança em qualquer arquivo do app.**
 - `manifest.webmanifest` e `icons/`: instalação como app.
@@ -26,6 +26,10 @@ App pessoal de finanças (PWA estático, em português do Brasil), publicado no 
 
 ## Agenda
 - `gerarICS()` monta um .ics com um evento mensal por conta e por cartão (dias 29–31 usam `BYMONTHDAY=28..N;BYSETPOS=-1`), com alarmes 2 dias antes e no dia às 9h.
+
+## Detalhes de interface
+- Ao pagar a última conta do mês, `hearts()` solta corações na tela (desligado com `prefers-reduced-motion`).
+- Categoria e forma de pagamento do gasto são escolhidas por botões (`#catPick`, `#formaPick`) que espelham os `<select>` ocultos `#gCat` e `#gForma`.
 
 ## Convenções
 - Valores em reais aceitam vírgula (`parseValor`) e são exibidos com `Intl.NumberFormat("pt-BR")`.
