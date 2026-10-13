@@ -4,6 +4,8 @@ App pessoal para controlar as finanças do mês, feito para usar no celular:
 
 - **Contas a pagar**: checklist mensal com vencimento, aviso de atrasadas e das que vencem nos próximos 3 dias.
 - **Gastos do dia a dia**: lançamento rápido com categoria e forma de pagamento (Pix, débito, crédito…), total por categoria e limite mensal.
+- **Cartões de crédito e parcelas**: cadastre o cartão com os dias de fechamento e vencimento. Compras no crédito vão para a fatura certa, e as parceladas se espalham pelos meses seguintes. A fatura aparece no checklist de contas.
+- **Lembretes na agenda**: o botão “Adicionar vencimentos à agenda” gera um arquivo de calendário com cada conta e fatura, com aviso 2 dias antes e no dia.
 - **Sobra prevista**: renda − contas fixas − gastos.
 - **Funciona offline** e instala na tela inicial como aplicativo (PWA).
 - **Backup**: os dados ficam só no aparelho. Exporte um arquivo `.json` de vez em quando e importe quando trocar de celular.
@@ -35,6 +37,12 @@ Não tem servidor, login nem banco de dados. É um site estático: `index.html`,
 - **iPhone (Safari)**: abra o link no Safari, toque em **Compartilhar** → **Adicionar à Tela de Início**.
 
 Depois de instalado, o app abre em tela cheia e funciona sem internet.
+
+## Lembretes na agenda
+
+- **iPhone**: toque em “Adicionar vencimentos à agenda”, escolha abrir com **Calendário** e toque em **Adicionar tudo**. Os avisos (2 dias antes e no dia, às 9h) já vêm configurados.
+- **Android**: escolha abrir o arquivo com o app de agenda do celular. Se o Google Agenda não abrir o arquivo, importe pelo computador em calendar.google.com → Configurações → Importar e exportar. O Google Agenda usa os avisos padrão da sua agenda, não os do arquivo.
+- Ao cadastrar contas ou cartões novos, gere o arquivo de novo. Na agenda do iPhone, os eventos repetidos são reconhecidos; em outras agendas podem aparecer duplicados.
 
 ## Cuidados com os dados
 

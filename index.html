@@ -70,6 +70,11 @@
 
       <div class="progress" id="progress"></div>
       <ul class="bills" id="bills"></ul>
+
+      <div class="calbox">
+        <button class="ghost" id="icsBtn" type="button">Adicionar vencimentos à agenda</button>
+        <p class="hint">Cria um lembrete 2 dias antes e outro no dia de cada conta e fatura, na agenda do celular.</p>
+      </div>
     </section>
 
     <section class="panel" aria-labelledby="hGastos">
@@ -80,11 +85,14 @@
 
       <form class="grid" id="gastoForm">
         <div class="f s4"><label for="gDesc">O que foi</label><input id="gDesc" placeholder="Ex.: Mercado, gasolina, lanche" maxlength="60" required></div>
-        <div class="f s2 half"><label for="gValor">Valor (R$)</label><input id="gValor" inputmode="decimal" placeholder="0,00" required></div>
+        <div class="f s2 half"><label for="gValor" id="gValorLbl">Valor (R$)</label><input id="gValor" inputmode="decimal" placeholder="0,00" required></div>
         <div class="f s2 half"><label for="gData">Data</label><input id="gData" type="date" required></div>
         <div class="f s2"><label for="gCat">Categoria</label><select id="gCat"></select></div>
         <div class="f s2"><label for="gForma">Pagou com</label>
           <select id="gForma"><option>Pix</option><option>Débito</option><option>Crédito</option><option>Dinheiro</option><option>Boleto</option></select></div>
+        <div class="f s3 half" id="gCartaoBox" hidden><label for="gCartao">Cartão</label><select id="gCartao"></select></div>
+        <div class="f s3 half" id="gParcBox" hidden><label for="gParc">Parcelas</label><select id="gParc"></select></div>
+        <p class="hint s6" id="gCardHint" hidden></p>
         <div class="formacts">
           <button class="primary" type="submit">Lançar gasto</button>
           <span class="err" id="gErr"></span>
@@ -96,6 +104,25 @@
       <div class="days" id="days"></div>
     </section>
   </div>
+
+  <section class="panel" aria-labelledby="hCartoes">
+    <div class="panel-head">
+      <h2 id="hCartoes">Cartões de crédito</h2>
+      <button class="primary" id="newCartao" type="button">+ Novo cartão</button>
+    </div>
+    <p class="hint">Compras no crédito vão para a fatura do mês em que ela vence, e as parceladas se espalham pelos meses seguintes. Compras feitas a partir do dia do fechamento entram na fatura seguinte.</p>
+    <form class="grid" id="cartaoForm" hidden>
+      <div class="f s2"><label for="kNome">Cartão</label><input id="kNome" placeholder="Ex.: Nubank" maxlength="30" required></div>
+      <div class="f s2 half"><label for="kFecha">Fecha todo dia</label><input id="kFecha" type="number" inputmode="numeric" min="1" max="31" placeholder="3" required></div>
+      <div class="f s2 half"><label for="kVence">Vence todo dia</label><input id="kVence" type="number" inputmode="numeric" min="1" max="31" placeholder="10" required></div>
+      <div class="formacts">
+        <button class="primary" type="submit" id="kSubmit">Adicionar cartão</button>
+        <button class="ghost" type="button" id="kCancel">Cancelar</button>
+        <span class="err" id="kErr"></span>
+      </div>
+    </form>
+    <ul class="cardlist" id="cardList"></ul>
+  </section>
 
   <section class="backup" aria-labelledby="hBackup">
     <div class="backup-text">
