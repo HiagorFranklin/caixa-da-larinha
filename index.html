@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Caixa da Larinha</title>
+<meta name="description" content="Checklist de contas a pagar, gastos do dia a dia e sobra prevista do mês.">
+<meta name="theme-color" content="#FBF3F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1015" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Caixa da Larinha">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Caixa da Larinha</h1>
+      <p>Contas fixas, gastos do dia a dia e quanto sobra.</p>
+    </div>
+    <div class="monthnav" role="group" aria-label="Mês">
+      <button class="iconbtn" id="prevM" aria-label="Mês anterior">‹</button>
+      <div class="m" id="monthLabel">—</div>
+      <button class="iconbtn" id="nextM" aria-label="Próximo mês">›</button>
+      <button class="ghost" id="todayM">Hoje</button>
+    </div>
+  </header>
+
+  <div class="banner" id="installBar" hidden></div>
+
+  <section class="ledger" id="ledger" aria-label="Resumo do mês"></section>
+
+  <form class="rendaform" id="rendaForm" hidden>
+    <div class="f" style="flex:1 1 160px"><label for="rRenda">Renda mensal (salário + extras)</label><input id="rRenda" inputmode="decimal" placeholder="0,00"></div>
+    <div class="f" style="flex:1 1 160px"><label for="rMeta">Limite p/ gastos do dia a dia</label><input id="rMeta" inputmode="decimal" placeholder="opcional"></div>
+    <div class="formacts" style="flex:0 0 auto">
+      <button class="primary" type="submit">Salvar</button>
+      <button class="ghost" type="button" id="rCancel">Cancelar</button>
+    </div>
+  </form>
+
+  <div class="cols">
+    <section class="panel" aria-labelledby="hContas">
+      <div class="panel-head">
+        <h2 id="hContas">Contas a pagar</h2>
+        <button class="primary" id="newConta" type="button">+ Nova conta</button>
+      </div>
+
+      <form class="grid" id="contaForm" hidden>
+        <div class="f s3"><label for="cNome">Conta</label><input id="cNome" placeholder="Ex.: Energia (Cemig)" maxlength="60" required></div>
+        <div class="f s3 half"><label for="cValor">Valor (R$)</label><input id="cValor" inputmode="decimal" placeholder="0,00" required></div>
+        <div class="f s2 half"><label for="cDia">Vence todo dia</label><input id="cDia" type="number" inputmode="numeric" min="1" max="31" placeholder="10" required></div>
+        <div class="f s2"><label for="cCat">Categoria</label><select id="cCat"></select></div>
+        <div class="f s2"><label for="cTipo">Repete</label>
+          <select id="cTipo"><option value="mensal">Todo mês</option><option value="unica">Só neste mês</option></select></div>
+        <div class="formacts">
+          <button class="primary" type="submit" id="cSubmit">Adicionar conta</button>
+          <button class="ghost" type="button" id="cCancel">Cancelar</button>
+          <span class="err" id="cErr"></span>
+        </div>
+      </form>
+
+      <div class="progress" id="progress"></div>
+      <ul class="bills" id="bills"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="hGastos">
+      <div class="panel-head">
+        <h2 id="hGastos">Gastos do mês</h2>
+        <span class="num" id="gTotal"></span>
+      </div>
+
+      <form class="grid" id="gastoForm">
+        <div class="f s4"><label for="gDesc">O que foi</label><input id="gDesc" placeholder="Ex.: Mercado, gasolina, lanche" maxlength="60" required></div>
+        <div class="f s2 half"><label for="gValor">Valor (R$)</label><input id="gValor" inputmode="decimal" placeholder="0,00" required></div>
+        <div class="f s2 half"><label for="gData">Data</label><input id="gData" type="date" required></div>
+        <div class="f s2"><label for="gCat">Categoria</label><select id="gCat"></select></div>
+        <div class="f s2"><label for="gForma">Pagou com</label>
+          <select id="gForma"><option>Pix</option><option>Débito</option><option>Crédito</option><option>Dinheiro</option><option>Boleto</option></select></div>
+        <div class="formacts">
+          <button class="primary" type="submit">Lançar gasto</button>
+          <span class="err" id="gErr"></span>
+        </div>
+      </form>
+
+      <div id="metaBox"></div>
+      <div class="cats" id="cats"></div>
+      <div class="days" id="days"></div>
+    </section>
+  </div>
+
+  <section class="backup" aria-labelledby="hBackup">
+    <div class="backup-text">
+      <h2 id="hBackup">Backup</h2>
+      <p>Seus dados ficam só neste aparelho. Exporte um backup de vez em quando e guarde no Drive ou no WhatsApp. <span id="lastBackup"></span></p>
+    </div>
+    <div class="backup-acts">
+      <button class="primary" id="exportBtn" type="button">Exportar backup</button>
+      <label class="ghost filebtn" for="importFile">Importar backup</label>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+    <div class="banner" id="importConfirm" hidden></div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
